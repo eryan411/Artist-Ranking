@@ -1,8 +1,8 @@
 const express = require('express')
 const path = require('path')
-const app = express()
-const PORT = process.env.PORT || 8000
 const MongoClient = require('mongodb').MongoClient
+const app = express()
+const PORT = process.env.PORT
 
 let db, 
     dbConnectionStr = 'mongodb+srv://eryan411:testserver123@cluster0.701bxt1.mongodb.net/?retryWrites=true&w=majority'
@@ -64,6 +64,6 @@ app.delete('/deleteArtist', (req, res) => {
     })
 })
 
-app.listen(PORT, () => {
+app.listen(PORT || 8000, () => {
     console.log(`Server is now running on ${PORT}`)
 })
