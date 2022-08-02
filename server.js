@@ -65,5 +65,5 @@ app.delete('/deleteArtist', (req, res) => {
 })
 
 app.listen(PORT || 8000, () => {
-    console.log(`Server is now running on ${PORT}`)
+    console.log(`Server is now running on ${PORT || 8000}`)
 })
