@@ -2,21 +2,17 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const PORT = process.env.PORT || 8000
-const dotenv = require('dotenv')
 const MongoClient = require('mongodb').MongoClient
-dotenv.config()
 
 let db, 
-    dbConnectionStr = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.701bxt1.mongodb.net/?retryWrites=true&w=majority`
+    dbConnectionStr = 'mongodb+srv://eryan411:testserver123@cluster0.701bxt1.mongodb.net/?retryWrites=true&w=majority'
     dbName = 'artist'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
-})
-
-
+    })
 // => Here we expose the views so it can be rendered.
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
