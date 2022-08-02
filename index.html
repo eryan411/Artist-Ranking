@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Artist Rankings</title>
+</head>
+<body>
+    <div class="intro-container">
+        <h1 class="text-6xl font-serif">Artist Rankings</h1>
+    </div>
+    <div class="input-container flex-auto">
+        <h2>Have a new artist?</h2>
+        <form action="/addArtist" method="POST">
+            <input type="text" name="stageName" placeholder="Stage Name">
+            <input type="text" name="genre" placeholder="Genre">
+        </form>
+    </div>
+
+    <div class="res-box">
+        <ul class="artists">
+        </ul>
+    </div>
+</body>
+</html>
