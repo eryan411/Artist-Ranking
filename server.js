@@ -1,6 +1,5 @@
 const express = require('express')
 const path = require('path')
-
 const app = express()
 const PORT = process.env.PORT || 8000
 const MongoClient = require('mongodb').MongoClient
@@ -28,6 +27,40 @@ app.get('/', (req, res) => {
     db.collection('artists').find().sort({likes: -1}).toArray()
     .then(data => {
         res.render('index.ejs', {info: data})
+    })
+})
+
+app.post('/addArtist', (req, res) => {
+    db.collection('artists').insertOne({stageName: req.body.stageName,
+    genre: req.body.genre, likes: 0})
+    .then(result => {
+        console.log('Artist Added')
+        res.redirect('/')
+    })
+    .catch(error => console.error(error))
+})
+
+app.put('/addLike', (req, res) => {
+    db.collection('artists').updateOne({stageName: req.body.stageName, genre: req.body.genre, likes: req.body.likes}, {
+        $set:{
+            likes: req.body.likes + 1
+        }
+    }, {
+        sort: {_id: -1},
+        upsert: true
+    })
+    .then(result => {
+        console.log(`Added one like to ${req.body.stageName}, now at ${req.body.likes}`)
+        res.json('Like added')
+    })
+    .catch(error => console.error(error))
+})
+
+app.delete('/deleteArtist', (req, res) => {
+    db.collection('artists').deleteOne({stageName: req.body.stageName})
+    .then(result => {
+        console.log('Artist Deleted')
+        res.json('Artist Deleted')
     })
 })
 
