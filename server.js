@@ -5,7 +5,7 @@ const app = express()
 const PORT = process.env.PORT
 
 let db, 
-    dbConnectionStr = 'mongodb+srv://eryan411:testserver123@cluster0.701bxt1.mongodb.net/?retryWrites=true&w=majority'
+    dbConnectionStr = process.env.DBURL
     dbName = 'artist'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
